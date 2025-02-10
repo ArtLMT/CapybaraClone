@@ -12,7 +12,7 @@ const battle = {
         // đi đời rồi thì phản công kiểu gì?
         if ((Math.random() >= (1 - target.counterRate)) && this.isAlive(target)) {
             user.hp -= this.damageCalculator(target,user)
-            console.log(`${target.name} phản công, gây ${target.atk} sát th lên ${user.name}, ${user.name} còn ${user.hp} máu`)
+            console.log(`${target.name} phản công, gây ${target.atk} sát thương lên ${user.name}, ${user.name} còn ${user.hp} máu`)
         }
     },
     isAlive(user) {
@@ -24,9 +24,8 @@ export function startBattle(character1, character2) {
     let round = 1
     while (battle.isAlive(character1) && battle.isAlive(character2)) {
         console.log(`Round ${round}: `)
-        if (round % 2 == 0) {
-            battle.attack(character1, character2)
-        } else {
+        battle.attack(character1, character2)
+        if (battle.isAlive(character1) && battle.isAlive(character2)) {
             battle.attack(character2, character1)
         }
         round++
