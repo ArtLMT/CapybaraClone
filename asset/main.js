@@ -1,3 +1,4 @@
+// object cho player
 const player = {
     name: 'Thanh',
     hp: 1000,
@@ -5,6 +6,7 @@ const player = {
     def: 50,
 }
 
+// object cho quái
 const enemies = {
     name: 'Jeff',
     hp: 5000,
@@ -12,9 +14,11 @@ const enemies = {
     def: 0
 }
 
+// object sử lý các logic khi đánh nhau
 const battle = {
     damageCalculator(user, target) {
-        let damage = user.atk - target.def > 0 ? user.atk - target.def : 0
+        let damage = user.atk - target.def > 0 ? user.atk - target.def : 0 // Dùng toán tử 3 ngôi để kiểm tra
+        // let damage = Math.max (user.atk - target.def, 0) // Dùng hàm max để tìm giá trị lớn nhất giữa các tham số truyền vào
         return damage
     },
     attack(user, target) {
@@ -26,6 +30,7 @@ const battle = {
     }
 }
 
+// bắt đầu chạy từ đây
 let round = 1
 while (battle.isAlive(player) && battle.isAlive(enemies)) {
     console.log(`Round ${round}: `)
