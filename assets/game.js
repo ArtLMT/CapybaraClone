@@ -8,8 +8,12 @@ const battle = {
     attack(user, target) {
         target.hp -= this.damageCalculator(user, target)
         console.log(`${user.name} đấm vỡ alo ${target.name}, ${target.name} mất ${this.damageCalculator(user,target)}, còn lại ${target.hp} máu`)
-        // let counterChance = target.counterRate * 100 // 80% 1/5
-        // if ((Math.random() * counterChance) )
+        // thêm tỉ lệ phản công, chỉ hoạt đống nếu còn sống
+        // đi đời rồi thì phản công kiểu gì?
+        if ((Math.random() >= (1 - target.counterRate)) && this.isAlive(target)) {
+            user.hp -= this.damageCalculator(target,user)
+            console.log(`${target.name} phản công, gây ${target.atk} sát th lên ${user.name}, ${user.name} còn ${user.hp} máu`)
+        }
     },
     isAlive(user) {
         return user.hp > 0
