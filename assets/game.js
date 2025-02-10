@@ -1,37 +1,16 @@
-// object sử lý các logic khi đánh nhau
-const battle = {
-    damageCalculator(user, target) {
-        let damage = user.atk - target.def > 0 ? user.atk - target.def : 0 // Dùng toán tử 3 ngôi để kiểm tra
-        // let damage = Math.max (user.atk - target.def, 0) // Dùng hàm max để tìm giá trị lớn nhất giữa các tham số truyền vào
-        return damage
-    },
-    attack(user, target) {
-        target.hp -= this.damageCalculator(user, target)
-        console.log(`${user.name} đấm vỡ alo ${target.name}, ${target.name} mất ${this.damageCalculator(user,target)}, còn lại ${target.hp} máu`)
-        // thêm tỉ lệ phản công, chỉ hoạt đống nếu còn sống
-        // đi đời rồi thì phản công kiểu gì?
-        if ((Math.random() >= (1 - target.counterRate)) && this.isAlive(target)) {
-            user.hp -= this.damageCalculator(target,user)
-            console.log(`${target.name} phản công, gây ${target.atk} sát thương lên ${user.name}, ${user.name} còn ${user.hp} máu`)
-        }
-    },
-    isAlive(user) {
-        return user.hp > 0
-    }
-}
 export function startBattle(character1, character2) {
     // bắt đầu chạy từ đây
     let round = 1
-    while (battle.isAlive(character1) && battle.isAlive(character2)) {
+    while (character1.isAlive(character1) && character2.isAlive(character2)) {
         console.log(`Round ${round}: `)
-        battle.attack(character1, character2)
-        if (battle.isAlive(character1) && battle.isAlive(character2)) {
-            battle.attack(character2, character1)
+        character1.attack(character1, character2)
+        if (character1.isAlive(character1) && character1.isAlive(character2)) {
+            character1.attack(character2, character1)
         }
         round++
     }
     
-    if (battle.isAlive(character1)) {
+    if (character1.isAlive(character1)) {
         console.log(`${character1.name} win!`)
     } else {
         console.log(`${character2.name} win!`)
