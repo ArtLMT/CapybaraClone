@@ -14,7 +14,7 @@ Character.prototype.damageCalculator = function (user, target) {
       return damage
 }
 
-Character.prototype.attack = function(user, target) {
+Character.prototype.attack = function (user, target) {
     target.hp -= this.damageCalculator(user, target)
     console.log(`${user.name} đấm vỡ alo ${target.name}, ${target.name} mất ${this.damageCalculator(user,target)}, còn lại ${target.hp} máu`)
     // thêm tỉ lệ phản công, chỉ hoạt đống nếu còn sống
@@ -28,6 +28,7 @@ Character.prototype.attack = function(user, target) {
 Character.prototype.isAlive = function (user) {
   return user.hp > 0
 }
+
 //   // object sử lý các logic khi đánh nhau
 // const battle = {
 //   damageCalculator(user, target) {

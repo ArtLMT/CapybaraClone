@@ -1,5 +1,5 @@
 export function startBattle(character1, character2) {
-    // bắt đầu chạy từ đây
+    // main loop
     let round = 1
     while (character1.isAlive(character1) && character2.isAlive(character2)) {
         console.log(`Round ${round}: `)
@@ -10,6 +10,7 @@ export function startBattle(character1, character2) {
         round++
     }
     
+    // last result output
     if (character1.isAlive(character1)) {
         console.log(`${character1.name} win!`)
     } else {
